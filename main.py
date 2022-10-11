@@ -1,5 +1,5 @@
 import customtkinter
-import tkinter
+from tkinter import messagebox
 import keyboard
 
 from wordtypingtest import WordTypingTest
@@ -26,7 +26,14 @@ def button_function():
 
 def detect_key_press(event):
     if keyboard.read_key():
-        typing_test.register_new_char(entryTest.get())
+        if typing_test.register_new_char(entryTest.get()):
+            messagebox.showinfo(
+                title="Final results",
+                message=f"Elapsed time: {int(typing_test.elapsed_time)} s\n"
+                        f"Words per min: {int(typing_test.words_per_min)}\n"
+                        f"Char. per min: {int(typing_test.char_per_min)}\n"
+                        f"Correct words: {int(typing_test.correct_words)}/{int(len(typing_test.words_list))}\n"
+            )
         time_label.configure(text=f"Elapsed time: {int(typing_test.elapsed_time)}")
         result_word_label.configure(text=f"Words per min: {int(typing_test.words_per_min)}")
         result_char_label.configure(text=f"Char. per min: {int(typing_test.char_per_min)}")
