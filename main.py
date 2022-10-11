@@ -14,7 +14,7 @@ app = customtkinter.CTk()
 app.title("Typing Speed Test")
 app.geometry("500x550")
 
-typing_test = WordTypingTest(10)
+typing_test = WordTypingTest(100)
 word_for_test = ""
 
 
