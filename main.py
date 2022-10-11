@@ -7,14 +7,14 @@ from wordtypingtest import WordTypingTest
 words_per_min = 0
 test_time = 0
 
-customtkinter.set_appearance_mode("System")  # Modes: system (default), light, dark
-customtkinter.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
+customtkinter.set_appearance_mode("System")
+customtkinter.set_default_color_theme("blue")
 
-app = customtkinter.CTk()  # create CTk window like you do with the Tk window
+app = customtkinter.CTk()
 app.title("Typing Speed Test")
 app.geometry("500x550")
 
-typing_test = WordTypingTest()
+typing_test = WordTypingTest(10)
 word_for_test = ""
 
 
@@ -42,7 +42,6 @@ def detect_key_press(event):
 wordsLabel = customtkinter.CTkLabel(master=app, text=word_for_test, wraplength=500, text_font=("arial.ttf", 12))
 wordsLabel.grid(row=0, column=0, columnspan=3, padx=10, pady=10)
 
-# Use CTkButton instead of tkinter Button
 button = customtkinter.CTkButton(master=app, text="Start / Restart", command=button_function)
 button.grid(row=1, column=1, padx=10, pady=10)
 
