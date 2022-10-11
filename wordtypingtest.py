@@ -7,7 +7,7 @@ WORDLIST_PATH = "words_list.csv"
 
 class WordTypingTest:
 
-    def __init__(self):
+    def __init__(self, words):
         self.words_per_min = 0
         self.char_per_min = 0
         self.start_time = 0
@@ -15,14 +15,14 @@ class WordTypingTest:
         self.elapsed_time = 0
         self.correct_words = 0
         self.typed_text = ""
-        self.words_list = self.get_words_list()
+        self.words_list = self.get_words_list(words)
 
     @staticmethod
-    def get_words_list():
+    def get_words_list(words):
         with open(WORDLIST_PATH, "r") as file:
             reader = csv.reader(file)
             words_list = [item[0] for item in reader if 6 > len(item[0]) > 3]
-        word_for_test = random.sample(words_list, 100)
+        word_for_test = random.sample(words_list, words)
         return word_for_test
 
     def start_test(self):
@@ -45,3 +45,10 @@ class WordTypingTest:
         self.char_per_min = correct_chars / (self.elapsed_time / 60)
         self.words_per_min = correct_words / (self.elapsed_time / 60)
         self.correct_words = correct_words
+        return self.is_complete(input_list)
+
+    def is_complete(self, input_words):
+        if len(input_words) == len(self.words_list):
+            return True
+        else:
+            return False
